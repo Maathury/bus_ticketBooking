@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Feedback</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container-2 p-3" align="center" style="background-color:rgb(231, 70, 16); color: aliceblue;">
+    <h2>View Feedback</h2>
+</div>
+<div class="container">
+    <table class="table table-striped text-center mt-5 ">
+        <thead class="table-danger">
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Bus Name</th>
+            <th>Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="feedback : ${feedbacks}">
+            <td th:text="${feedback.id}"></td>
+            <td th:text="${feedback.email}"></td>
+            <td th:text="${feedback.busName}"></td>
+            <td th:text="${feedback.comments}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-center mt-4">
+        <a href="/home/admin" class="btn btn-primary mt-2" style="border-radius: 8px;">Back to Home</a>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

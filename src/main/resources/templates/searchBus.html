@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Bus</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+        .form-control{
+         border-radius: 8px;
+        }
+        .form-label{
+         font-weight: 600;
+        }
+        h2{
+         color: crimson;
+        }
+        .btn-success,.btn-primary{
+         border-radius: 8px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="container-2 p-3" align="center" style="background-color:rgb(231, 70, 16); color: aliceblue;">
+    <h1>Search Bus</h1>
+</div>
+<div class="container mt-5">
+
+    <form th:action="@{/find}" th:object="${findDto}" method="post" class="row g-3 mt-4 align-items-end">
+        <div class="col-md-4">
+            <label for="source" class="form-label">From</label>
+            <input type="text" id="source" name="source" th:field="*{source}" class="form-control" placeholder="Enter source" required>
+        </div>
+        <div class="col-md-4">
+            <label for="destination" class="form-label">To</label>
+            <input type="text" id="destination" name="destination" th:field="*{destination}" class="form-control" placeholder="Enter destination" required>
+        </div>
+        <div class="col-md-4">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" id="date" name="date" th:field="*{date}" class="form-control" required>
+        </div>
+        <div class="col-md-5">
+            <button type="submit" class="btn btn-primary mt-4 ">Search</button>
+        </div>
+    </form>
+
+    <div class="mt-5">
+        <h2 class="text-center">Available Buses</h2>
+        <table class="table table-striped mt-5">
+            <thead class="table-danger">
+            <tr>
+                <th>Bus Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bus : ${findBuses}">
+                <td th:text="${bus.busName}"></td>
+                <td th:text="${bus.source}"></td>
+                <td th:text="${bus.destination}"></td>
+                <td th:text="${bus.date}"></td>
+                <td th:text="${bus.time}"></td>
+                <td th:text="${bus.price}"></td>
+                <td>
+                    <a th:href="@{/bus/{id}(id=${bus.id})}" class="btn btn-success">Book</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-5">
+        <a th:href="@{/home/user}" class="btn btn-primary" >Back to Home</a>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

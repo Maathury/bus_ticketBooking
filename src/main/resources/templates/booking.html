@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container-2 p-3" align="center" style="background-color:rgb(231, 70, 16); color: aliceblue;">
+    <h2>Booking form</h2>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4 pt-5">
+
+
+            <form action="#" th:action="@{/book}" th:object="${booking}" method="post" >
+                <input type="hidden" th:field="*{bus.id}" />
+                <div class="form-group">
+                    <label for="busName">BUS NAME:</label>
+                    <input type="text" th:field="*{busName}" class="form-control" id="busName" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="date">DATE:</label>
+                    <input type="date" th:field="*{date}" class="form-control" id="date" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="time">TIME:</label>
+                    <input type="time" th:field="*{time}" class="form-control" id="time" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="noOfPersons">No Of Persons:</label>
+                    <input type="number" th:field="*{noOfPersons}" class="form-control" id="noOfPersons"
+                           placeholder="Enter number of persons..." min="1" required>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary mt-4" style="border-radius: 8px;">Book </button>
+                </div>
+            </form>
+            <a th:href="@{/searchBus}" class="btn btn-success mx-5 mt-4 d-block text-center" style="border-radius: 8px;" >Back to search Bus</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

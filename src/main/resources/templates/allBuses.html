@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Bus Ticket Booking System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .btn-primary{
+            border-radius: 20px;
+
+        }
+    </style>
+
+</head>
+<body>
+<div class="container-2 p-3" align="center" style="background-color:rgb(231, 70, 16); color: aliceblue;">
+    <h2>Bus Management System</h2>
+</div>
+<div style="text-align: center;">
+    <a th:href="@{/addBus}" class="btn btn-primary mx-5 m-4">Add New Bus</a>
+</div>
+
+<div class="container mt-5 text-center">
+    <table class="table table-striped mt-4">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bus Name</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bus : ${listOfBuses}">
+            <td th:text="${bus.Id}"></td>
+            <td th:text="${bus.busName}"></td>
+            <td th:text="${bus.source}"></td>
+            <td th:text="${bus.destination}"></td>
+            <td th:text="${bus.date}"></td>
+            <td th:text="${bus.time}"></td>
+            <td>
+                <a th:href="@{/update/{id}(id=${bus.Id})}" class="btn btn-warning">Update</a>
+                <a th:href="@{/delete/{id}(id=${bus.Id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<a th:href="@{/home/admin}" class="btn btn-primary mx-5 mt-5 ">Back to Home</a>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

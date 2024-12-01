@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+    <style>
+        .container{
+         background-color:rgb(231, 70, 16);
+        }
+        .btn{
+         color: aliceblue;
+         font-weight: bold;
+        }
+
+        .container-2{
+
+     background-image: url("data:image/jpeg;base64,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");
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+     height: 300px;
+     margin: 55px;
+     }
+
+    </style>
+
+</head>
+
+<body>
+<div class="container p-3">
+    <div class="row ">
+
+        <div class="col">
+            <a class="btn"  th:href="@{/searchBus}">Search Bus</a>
+        </div>
+        <div class="col">
+            <a class="btn"  th:href="@{/feedback}" >Add Feedback</a>
+        </div>
+        <div class="col">
+            <a class="btn" th:href="@{/allBookings}">View Booking</a>
+        </div>
+        <div class="col-md-6 text-end">
+            <a class="btn logout-btn" th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-2 text-center mt-5 p-5">
+    <h2>Welcome to User Dashboard</h2>
+    <h6>Make a trip with us</h6>
+</div>
+
+<div class="container-3 text-center m-5">
+    <div class="row">
+        <div class="col m-3 p-3" style="box-shadow: 0px 4px 8px red;" >
+            <h4>About us</h4>
+            <p>MRM is a online bus ticket booking company ,started in the year 2014.It makes booking the bus from your own place .
+                we are partnership with our leading ticket booking companies and G-pay,paytm and other bankings for transcation
+            </p>
+        </div>
+        <div class="col m-3 p-3" style="box-shadow: 0px 4px 8px red;">
+            <h4>Why Online booking?</h4>
+            <p>With an online booking system,
+                your clients will feel more comfortable reaching out and making a booking through an online
+                bookable calendar. Furthermore, with this type of booking system, you'll automatically create a better
+                customer experience for your clients.
+            </p>
+        </div>
+        <div class="col m-3 p-3" style="box-shadow: 0px 4px 8px red;">
+            <h4>Advantages</h4>
+            <p>
+                MRM is India’s most trusted bus ticket company, where you can book any type of private or government-owned bus.
+                MRM allows you to find the different types of buses, choose the preferred bus seats,
+                and find your nearest boarding and dropping points.
+                You can also filter the buses based on timings.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-wQDYR1hPuF8f5JmW69vdFt3Lcn5EjYtrtmIfXDSVdKghPQBCT6kZ9vMGuKqWfj2x" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
